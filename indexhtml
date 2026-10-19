@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Protótipo: Criptografando Letras</title>
+<style>
+body {
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+background-color: #f4f7f6;
+color: #333;
+line-height: 1.6;
+padding: 20px;
+max-width: 800px;
+margin: 0 auto;
+}
+header, section, .interactive-box {
+background: white;
+padding: 20px;
+border-radius: 8px;
+margin-bottom: 20px;
+box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+h1, h2 { color: #2c3e50; }
+code {
+background: #eef2f3;
+padding: 2px 6px;
+border-radius: 4px;
+font-family: monospace;
+}
+input, button {
+width: 100%;
+padding: 10px;
+margin: 10px 0;
+border: 1px solid #ccc;
+border-radius: 4px;
+box-sizing: border-box;
+}
+button {
+background-color: #3498db;
+color: white;
+font-weight: bold;
+cursor: pointer;
+border: none;
+}
+button:hover { background-color: #2980b9; }
+.result {
+background: #e8f8f5;
+padding: 15px;
+border-left: 5px solid #2ecc71;
+font-weight: bold;
+margin-top: 10px;
+}
+</style>
+</head>
+<body>
+
+2
+
+<header>
+<h1> Protótipo: Criptografando Letras</h1>
+<p><strong>Conteúdo:</strong> Introdução à Criptografia e Cifra de César.</p>
+</header>
+<section>
+<h2> O que é Criptografia de Letras?</h2>
+<p>A criptografia é a arte de codificar informações para que apenas o
+destinatário correto consiga lê-las. Um dos métodos mais antigos e simples é a
+<strong>Cifra de César</strong> (ou cifra de substituição).</p>
+<p><strong>Como funciona?</strong> Cada letra do texto original é deslocada um
+número fixo de posições no alfabeto. Neste protótipo, estamos utilizando um deslocamento
+fixo de <strong>3 posições</strong> (A vira D, B vira E, C vira F, etc.).</p>
+</section>
+<div class="interactive-box">
+<h2> Teste o Protótipo em Tempo Real</h2>
+<p>Digite uma palavra em letras maiúsculas abaixo para ver a substituição
+acontecendo na prática:</p>
+<input type="text" id="inputText" placeholder="DIGITE AQUI (EX: TEXTO)"
+style="text-transform: uppercase;">
+<button onclick="criptografar()">Criptografar Mensagem</button>
+<div id="output" class="result" style="display: none;">
+Texto Criptografado: <span id="outputText"></span>
+</div>
+</div>
+<section>
+<h2> Explicação do Código Desenvolvido</h2>
+<p>Para fazer este protótipo funcionar, utilizamos uma lógica simples em
+JavaScript:</p>
+<ul>
+<li>Capturamos o valor do campo de entrada usando
+<code>document.getElementById</code>.</li>
+<li>Percorremos cada letra do texto digitado através de um laço de repetição
+(<code>for</code>).</li>
+<li>Convertemos a letra para seu código numérico (ASCII), somamos <code>3</
+code> posições, e transformamos o número de volta em caractere.</li>
+<li>Exibimos o resultado dinamicamente na tela alterando a propriedade
+<code>innerText</code> do elemento de saída.</li>
+</ul>
+</section>
+<script>
+function criptografar() {
+const input = document.getElementById('inputText').value.toUpperCase();
+let resultado = '';
+for (let i = 0; i < input.length; i++) {
+let codigo = input.charCodeAt(i);
+// Verifica se o caractere é uma letra de A-Z
+if (codigo >= 65 && codigo <= 90) {
+// Aplica o deslocamento de 3 posições e trata a rotação do alfabeto
+3
+
+Fluxo de Publicação e Deployment
+
+Repositório no GitHub: Criar um novo repositório público na conta pessoal intitulado cripto-
+web-app .
+
+Alocação do Código: Adicionar o arquivo criado sob o nome exato de index.html na raiz do
+projeto.
+Ativação do GitHub Pages:
+Acessar a aba Settings dentro do repositório criado.
+Navegar até a seção lateral Pages.
+Em Build and deployment, configurar a origem (Source) para "Deploy from a branch".
+Selecionar o branch principal ( main ou master ) e a pasta base ( /root ), salvando as
+alterações.
+Critério de Validação: O aluno terá concluído a tarefa com êxito assim que enviar o link de
+produção (ex: https://seu-usuario.github.io/cripto-web-app/ ) e o avaliador conseguir
+cifrar uma string de teste diretamente através da interface web gerada.
+Z -> C
+codigo = ((codigo - 65 + 3) % 26) + 65;
+}
+resultado += String.fromCharCode(codigo);
+}
+document.getElementById('outputText').innerText = resultado;
+document.getElementById('output').style.display = 'block';
+}
+</script>
+</body>
+</html>
